@@ -19,7 +19,6 @@ class App extends Component {
     }
 
     render() {
-        console.log(process.env)
         console.log(this.state.items)
         return (
             <div>
