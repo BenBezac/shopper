@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ShopperList from "./components/ShopperList";
+import ShopperItem from "./components/ShopperItem";
 
 class App extends Component {
 
@@ -12,24 +14,23 @@ class App extends Component {
     componentDidMount() {
         const API_URL = process.env.REACT_APP_API_URL;
 
-        const url = API_URL + '/shopperElements';
+        const url = API_URL + '/shopper/list/all';
         fetch(url)
             .then(response => response.json())
-            .then(data => this.setState({items: data._embedded.shopperElements, isLoading: false}));
+            .then(shopperList => this.setState({items: shopperList, isLoading: false}));
     }
 
     render() {
         console.log(this.state.items)
         return (
-            <div>
-                {this.state.items.map( (shopperElement, index) =>
-                    <div key={index} className="row">
-                        <div className="col-12">
-                            <label>Nom: </label> {shopperElement.name}
-                        </div>
-                        <div className="col-12">
-                            <label>Description: </label> {shopperElement.description}
-                        </div>
+            <div className="row">
+                {this.state.items.map( sl =>
+                    <div key={sl.id} className="col-4">
+                        <ShopperList name={sl.name} description={sl.description} >
+                            {sl.shopperElements.map(item =>
+                                <ShopperItem key={item.id} name={item.name}/>
+                            )}
+                        </ShopperList>
                     </div>
                 )}
             </div>
