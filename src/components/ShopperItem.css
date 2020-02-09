@@ -1,0 +1,7 @@
+.shopper-item > .btn{
+    margin-left: 2px;
+}
+
+.shopper-item.checked {
+    opacity: 0.5;
+}

@@ -8,19 +8,15 @@ class ShopperList extends Component {
         }
     }
 
-    async loadElements() {
-
-    }
-
     render() {
         return (
             <div>
                 <h1>{this.props.name}</h1>
                 <p>{this.props.description}</p>
                 {/*<button type="button" className="btn btn-primary" onClick={this.loadElements()}>Afficher les éléments de la liste</button>*/}
-                <ul>
+                <div className="list-group">
                     {this.props.children}
-                </ul>
+                </div>
             </div>
         );
     }
